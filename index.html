@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        body{
+            background: linear-gradient(to right, #292E49, #536976); 
+        }
+
+        .container{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .calculator{
+            background-color: #ecf0f3;
+            padding: 20px;
+            box-shadow: inset 5px 5px 12px #ffffff, inset 5px 5px 12px rgba(0, 0, 0, 0.386);
+            display: grid;
+            grid-template-columns: repeat(4,70px);
+        }
+        
+        input{
+            grid-column: span 4;
+            height: 70px;
+            width: 260px;
+            background-color: #d8d9da;
+            border: 1px solid grey;
+            border-radius: 20px;
+            color: grey;
+            font-size: 40px;
+            text-align: end;
+            margin: auto;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            padding: 20px;
+        }
+        
+        button{
+            height: 50px;
+            width: 50px;
+            background-color: #ecf0f3;
+            box-shadow: inset -5px -5px 12px #ffffff, inset 5px 5px 12px rgba(0, 0, 0, 0.09);
+            border: none;
+            border-radius: 50% ;
+            font-size: 17px;
+            margin: 8px;
+        }
+
+        .equal{
+            width: 120px;
+            border-radius: 40px;
+            background-color: #fed7b3;
+            box-shadow: inset -5px -5px 12px #ffffff, inset 5px 5px 12px rgba(0, 0, 0, 0.09);
+
+        }
+
+        button:hover {
+                        background-color: #c8f2f7; 
+                }
+
+        button:active {
+                        background-color: #88dce6; 
+                }    
+                
+        
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="calculator" style="border-radius: 20px;">
+            <input type="text" placeholder="0" readonly id="result"> <!-- readonly - so that the user cant input anything -->
+            <button onclick="clearAll()">Cl</button>
+            <button onclick="del()">DEL</button>
+            <button onclick="display('%')">%</button>
+            <button onclick="display('/')">/</button>
+            <button onclick="display(7)">7</button>
+            <button onclick="display(8)">8</button>
+            <button onclick="display(9)">9</button>
+            <button onclick="display('*')">*</button>
+            <button onclick="display(4)">4</button>
+            <button onclick="display(5)">5</button>
+            <button onclick="display(6)">6</button>
+            <button onclick="display('-')">-</button>
+            <button onclick="display(1)">1</button>
+            <button onclick="display(2)">2</button>
+            <button onclick="display(3)">3</button>
+            <button onclick="display('+')">+</button>
+            <button onclick="display('.')">.</button>
+            <button onclick="display(0)">0</button>
+            <button class="equal" onclick="equal()">=</button>
+          
+        </div>
+    </div>
+</body>
+<script>
+    // Display each num
+    function display(num){
+        result.value += num;
+    }
+
+    // Cl / clearing the value to default
+    function clearAll(){
+        result.value =""
+    }
+
+    function del(){
+        result.value = result.value.slice(0,-1)
+    }
+
+    function equal(){
+        try {
+            result.value = eval(result.value)
+        } catch (error) {
+           result.value = 'Error'
+           setTimeout(() => {
+                clearAll();
+           }, 1000); 
+        }
+        
+    }
+</script>
+</html>
+
